@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(rgba(0,0,0,0)100%,rgba(0,0,0,0)100%),url(img1.webp);
+  background-position: top;
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.container{
+    width:38%;
+    text-align:left;
+    position:absolute;
+    left: 4%;
+    top: 25%;
+}
+
+hr{
+    width:25%;
+    position: relative;
+    right:37% ;
+}
+h1 {
+color:whitesmoke;
+font-size: 50px;
+}
+
+p {
+color:whitesmoke;
+font-size: 20px;
+margin-bottom: 20px;
+
+}
+
+
+.button {
+display: inline-block;
+padding: 10px 20px;
+background-color: #4cb1b3;
+color: #fff;
+text-decoration: none;
+border-radius: 100px;
+transition: background-color 0.3s;
+}
+
+.button:hover {
+background-color: #2980b9;
+}
+
+.inputfile {
+display: none;
+}

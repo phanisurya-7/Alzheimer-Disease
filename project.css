@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgba(0,0,0,0.65)50%,rgba(0,0,0,0.65)50%),url(background.jpg);
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+a img {
+   width: 45%;
+   height: 70%;
+   position: relative;
+   top: 5%;
+  left: 30%;
+}
+
+input[type="file"] {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.image-container {
+    text-align: center;
+}
+
+#label-container {
+    text-align: center;
+    margin-top: 20px;
+    
+}
+
+#label-container div {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #ffffff;
+}
+}

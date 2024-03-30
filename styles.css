@@ -1,0 +1,131 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.main{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+  .container {
+    max-width: 800px;
+    padding: 20px;
+    text-align:center;
+    border-radius: 5px;
+    color: #ffffff;
+
+  }
+
+
+.content{
+  display: flex;
+  display: block;
+   position: absolute;
+   top:30%;
+   left: 10%;
+  max-height:fit-content;
+  width:37%;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background-image: linear-gradient(rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%),url(img8.jpg);
+  transition: top 2s;
+}
+  .box {
+    display: flex;
+    align-items: center;
+    position: relative;
+  left: 5%;
+  margin-bottom:7%;
+  }
+
+  .prevention{
+    position: absolute;
+    top:30%;
+    left: 53%;
+   height: 39%;
+   width:37%;
+   border: 2px solid transparent;
+   border-radius: 10px;
+   background-image: linear-gradient(rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%),url(img8.jpg);
+ 
+  }
+  .prevention h1{
+    font-size: 23px;
+    color: whitesmoke;
+    text-align: center;
+    position: relative;
+    top: 5%;
+  }
+
+  .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: #3498db;
+    display: inline-block;
+    padding: 10px 35px;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+
+  .inputfile:focus + label,
+  .inputfile + label:hover {
+    background-color: #2980b9;
+  }
+
+  .inputfile:focus + label {
+    border-color: #34495e;
+  }
+
+  .inputfile + label span {
+    padding-right: 10px;
+  }
+
+  .inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+  }
+
+  /* Optional: Style the selected file name display */
+  #file-name {
+      display: flex;
+    align-items: center;
+    justify-content: center;
+    width:250px;
+    height: 45px;
+    color:whitesmoke;
+    border: 1px solid #333;
+     /* Compensate for input file button border */
+  }
+  
+
+  @media screen and (max-width: 768px) {
+  .content {
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20%;
+  }
+
+  .prevention {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 70%;
+  }
+}
+
+

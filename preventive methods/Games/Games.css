@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgba(0,0,0,0.4)50%,rgba(0,0,0,0.4)50%),url(back.jpg);
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+ 
+  .plan {
+    margin: 20px;
+    padding: 20px;
+   
+    border-radius: 5px;
+  }
+  
+  h1, h2 {
+    color: #ffffff;
+  }
+  
+  .Games {
+    margin-bottom: 20px;
+  }
+  
+  .Games img {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .Games p {
+    margin-top: 10px;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .context{
+ text-align: center ;
+ margin-top:3%;
+  }
+
+  .main-content {
+    position:absolute;
+    top: 25%;
+    left: 2%;
+    justify-content: center;
+    overflow: hidden;
+    row-gap:-20px;
+}
+.card{
+  width:90%;
+  height: 100%;
+}
+.img-fluid{
+  height:90%;
+  width: 100%;
+   
+}
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }

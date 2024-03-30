@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Comapatible" content="IE=edge">
+        <meta name="keywords" content="html css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Image Classification Project</title>
+    <meta name="description" content="This website is used to detect Alzheimer's Disease">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div class="main">
+    <div class="content" id="content-1">
+        <div class="container">
+            <h1>Detection of Alzheimer's Disease</h1>
+            <h2>Upload Your Files</h2>
+            <p>Please upload the files you want to check for Alzheimer's disease.</p>
+        </div>
+        <div class="box">
+          <input type="file"   name="file-7[]" id="fileInput" class="inputfile inputfile-6"  onchange="updateFileName(this)" accept="image/*" />
+          <label for="fileInput"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> Choose a file&hellip;</strong></label>
+          <div id="file-name" >No file chosen</div>
+        </div>
+        <div id="image-container" class="image-container"></div>
+        <div id="label-container"></div>
+    </div>
+    
+    <div class="methods">
+        <a href="preventive methods/preventive methods.html">
+            <div class="prevention">
+                <h1>Methods for preventing Alzheimer's Disease</h1>
+                <img src="Picsart_24-03-26_15-29-21-984.png" />
+            </div>
+        </a>    
+    </div>
+</div>
+        <script>
+          function updateFileName(input) {
+            const files = input.files;
+            if (files.length > 0) {
+              document.getElementById('file-name').textContent = files[0].name;
+              handleImageUpload(event);
+              adjust();
+            }
+        
+          }
+        </script>
+      <script>
+        function adjust(){
+            document.getElementById('content-1').style.top = '5%';
+        }
+      </script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script type="text/javascript">
+        let model, labelContainer, maxPredictions;
+
+        async function init() {
+            const fileInput = document.getElementById('fileInput');
+            fileInput.disabled = true;
+
+            // Initialize labelContainer variable
+            labelContainer = document.getElementById('label-container');
+            if (!labelContainer) {
+                console.error('Label container not found');
+                return;
+            }
+
+            // Load the model
+            const URL = 'https://teachablemachine.withgoogle.com/models/wsTD1UwYk/';
+            const modelURL = URL + 'model.json';
+            const metadataURL = URL + 'metadata.json';
+
+            try {
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
+                console.log('Model loaded successfully');
+                fileInput.disabled = false;
+            } catch (error) {
+                console.error('Error loading the model:', error);
+            }
+        }
+
+        // Call init() when the page finishes loading
+        window.addEventListener('load', async () => {
+            await init(); // Wait for model initialization to complete
+        });
+
+        async function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) {
+                console.error('No file selected');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = async function(event) {
+                const imageDataUrl = event.target.result;
+                const imageElement = new Image();
+                imageElement.src = imageDataUrl;
+                imageElement.onload = async function() {
+                    displayImage(imageElement);
+                    await predict(imageElement);
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function displayImage(imageElement) {
+            const imageContainer = document.getElementById('image-container');
+            imageContainer.innerHTML = ''; // Clear previous image
+            imageContainer.appendChild(imageElement);
+        }
+
+        async function predict(imageElement) {
+            if (!model) {
+                console.error('Model not initialized yet');
+                return;
+            }
+
+            // Check if labelContainer is defined
+            if (!labelContainer) {
+                console.error('Label container not found');
+                return;
+            }
+
+            try {
+                const prediction = await model.predict(imageElement);
+                labelContainer.innerHTML = ''; // Clear previous predictions
+
+                for (let i = 0; i < maxPredictions; i++) {
+                    const classPrediction =
+                        prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
+                    if(prediction[i].probability>0.5) labelContainer.innerHTML += `<div>${classPrediction}</div>`;
+                }
+            } catch (error) {
+                console.error('Error predicting:', error);
+            }
+        }
+
+    </script>
+</body>
+</html>
